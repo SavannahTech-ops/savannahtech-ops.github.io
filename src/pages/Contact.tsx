@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Check } from 'lucide-react';
+import { Mail, Phone, MapPin, Check, Calendar } from 'lucide-react';
 import PageTransition from '@/components/PageTransition';
 import { cn } from '@/lib/utils';
 
@@ -16,6 +16,7 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [showCalendly, setShowCalendly] = useState(false);
   
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
@@ -78,6 +79,10 @@ const Contact = () => {
       }, 1500);
     }
   };
+
+  const toggleCalendly = () => {
+    setShowCalendly(!showCalendly);
+  };
   
   return (
     <PageTransition>
@@ -98,15 +103,18 @@ const Contact = () => {
       {/* Contact Information */}
       <section className="py-12 bg-background">
         <div className="container-custom">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-fade-in-up">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 animate-fade-in-up">
             <div className="p-6 rounded-lg bg-card border border-border flex flex-col items-center text-center">
               <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
                 <Phone className="h-5 w-5 text-primary" />
               </div>
               <h3 className="text-lg font-semibold mb-2">Phone</h3>
               <p className="text-muted-foreground mb-3">Give us a call</p>
-              <a href="tel:+254700000000" className="text-primary hover:underline transition-colors">
-                +254 700 000 000
+              <a href="tel:+254704062393" className="text-primary hover:underline transition-colors block">
+                +254 704 062 393
+              </a>
+              <a href="tel:+254702964334" className="text-primary hover:underline transition-colors block mt-1">
+                +254 702 964 334
               </a>
             </div>
             
@@ -116,8 +124,8 @@ const Contact = () => {
               </div>
               <h3 className="text-lg font-semibold mb-2">Email</h3>
               <p className="text-muted-foreground mb-3">Send us an email</p>
-              <a href="mailto:info@savannahprime.com" className="text-primary hover:underline transition-colors">
-                info@savannahprime.com
+              <a href="mailto:sales@savannahprimeagency.tech" className="text-primary hover:underline transition-colors">
+                sales@savannahprimeagency.tech
               </a>
             </div>
             
@@ -129,9 +137,51 @@ const Contact = () => {
               <p className="text-muted-foreground mb-3">Visit our office</p>
               <p>Nairobi, Kenya</p>
             </div>
+            
+            <div className="p-6 rounded-lg bg-card border border-border flex flex-col items-center text-center">
+              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                <Calendar className="h-5 w-5 text-primary" />
+              </div>
+              <h3 className="text-lg font-semibold mb-2">Book a Call</h3>
+              <p className="text-muted-foreground mb-3">Schedule a meeting</p>
+              <button 
+                onClick={toggleCalendly}
+                className="text-primary hover:underline transition-colors flex items-center"
+              >
+                Book a 30-min consultation
+              </button>
+            </div>
           </div>
         </div>
       </section>
+      
+      {/* Calendly Integration */}
+      {showCalendly && (
+        <section className="py-8 bg-background">
+          <div className="container-custom">
+            <div className="bg-card border border-border rounded-lg overflow-hidden animate-fade-in-up">
+              <div className="p-4 bg-primary/5 border-b border-border flex justify-between items-center">
+                <h3 className="text-lg font-semibold">Schedule a 30-minute consultation</h3>
+                <button 
+                  onClick={toggleCalendly} 
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  ✕
+                </button>
+              </div>
+              <div className="calendly-container" style={{ height: '680px' }}>
+                <iframe
+                  src="https://calendly.com/savannahprimeagency/30min"
+                  width="100%"
+                  height="100%"
+                  frameBorder="0"
+                  title="Calendly Scheduling"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
       
       {/* Contact Form & Map */}
       <section className="py-16 md:py-24 bg-background">
@@ -304,14 +354,14 @@ const Contact = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="tel:+254700000000"
+                href="tel:+254704062393"
                 className="button-hover-effect px-6 py-3 rounded-md font-medium bg-primary text-white hover:shadow-lg hover:shadow-primary/20 transition-all flex items-center justify-center"
               >
                 <Phone className="h-5 w-5 mr-2" />
                 Call Us
               </a>
               <a
-                href="mailto:info@savannahprime.com"
+                href="mailto:sales@savannahprimeagency.tech"
                 className="button-hover-effect px-6 py-3 rounded-md font-medium border border-primary/30 text-primary hover:bg-primary hover:text-white transition-all flex items-center justify-center"
               >
                 <Mail className="h-5 w-5 mr-2" />

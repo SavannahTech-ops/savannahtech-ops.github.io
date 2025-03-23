@@ -110,14 +110,19 @@ const Footer = () => {
               </li>
               <li className="flex items-center">
                 <Phone className="h-5 w-5 mr-2 text-primary" />
-                <a href="tel:+254700000000" className="text-muted-foreground hover:text-primary transition-colors">
-                  +254 700 000 000
-                </a>
+                <div className="text-muted-foreground">
+                  <a href="tel:+254704062393" className="hover:text-primary transition-colors block">
+                    +254 704 062 393
+                  </a>
+                  <a href="tel:+254702964334" className="hover:text-primary transition-colors block">
+                    +254 702 964 334
+                  </a>
+                </div>
               </li>
               <li className="flex items-center">
                 <Mail className="h-5 w-5 mr-2 text-primary" />
-                <a href="mailto:info@savannahprime.com" className="text-muted-foreground hover:text-primary transition-colors">
-                  info@savannahprime.com
+                <a href="mailto:sales@savannahprimeagency.tech" className="text-muted-foreground hover:text-primary transition-colors">
+                  sales@savannahprimeagency.tech
                 </a>
               </li>
             </ul>
