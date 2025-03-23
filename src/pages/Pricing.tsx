@@ -1,4 +1,3 @@
-
 import { CheckCircle, XCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PageTransition from '@/components/PageTransition';
@@ -44,13 +43,13 @@ const PricingTier: React.FC<PricingTierProps> = ({
       <h3 className="text-2xl font-bold mb-3">{title}</h3>
       
       <div className="mb-4">
-        {price !== "Custom" ? (
+        {!price.includes("KSH") ? (
           <>
             <span className="text-4xl font-bold text-foreground">{price}</span>
-            <span className="text-muted-foreground ml-1">KSH</span>
+            {price !== "Custom" && <span className="text-muted-foreground ml-1">KSH</span>}
           </>
         ) : (
-          <span className="text-3xl font-bold text-foreground">Custom</span>
+          <span className="text-3xl font-bold text-foreground">{price}</span>
         )}
       </div>
       
@@ -90,8 +89,8 @@ const PricingTier: React.FC<PricingTierProps> = ({
 const Pricing = () => {
   const pricingTiers = [
     {
-      title: "Website Development",
-      price: "28,000",
+      title: "Basic Website",
+      price: "25,000 - 40,000 KSH",
       description: "Perfect for small businesses looking to establish a professional online presence.",
       features: {
         included: [
@@ -115,8 +114,8 @@ const Pricing = () => {
       isPopular: false
     },
     {
-      title: "CMS Development",
-      price: "130,000",
+      title: "Advanced Website",
+      price: "45,000 - 70,000 KSH",
       description: "Comprehensive solution for businesses that need advanced content management capabilities.",
       features: {
         included: [
@@ -160,16 +159,16 @@ const Pricing = () => {
   
   const faqItems = [
     {
-      question: "What is included in the Website Development package?",
-      answer: "Our Website Development package includes custom design and development, domain registration and hosting, SEO-optimized structure, mobile-friendly responsive design, secure HTTPS implementation, fast-loading optimized performance, basic analytics integration, and social media integration. It's everything you need to establish a professional online presence."
+      question: "What is included in the Basic Website package?",
+      answer: "Our Basic Website package includes custom design and development, domain registration and hosting, SEO-optimized structure, mobile-friendly responsive design, secure HTTPS implementation, fast-loading optimized performance, basic analytics integration, and social media integration. Pricing ranges from 25,000 to 40,000 KSH depending on your specific requirements."
     },
     {
-      question: "How long does it take to develop a CMS solution?",
-      answer: "The timeline for CMS development varies depending on the complexity of your requirements. Typically, our CMS projects take between 6-10 weeks from initial consultation to launch. We'll provide you with a detailed timeline during our project planning phase."
+      question: "How long does it take to develop an Advanced Website?",
+      answer: "The timeline for Advanced Website development varies depending on the complexity of your requirements. Typically, our projects take between 4-8 weeks from initial consultation to launch. We'll provide you with a detailed timeline during our project planning phase."
     },
     {
       question: "Do you offer maintenance services after the project is completed?",
-      answer: "Yes, we offer ongoing maintenance and support services to ensure your website or application continues to perform optimally. Our CMS Development package includes 3 months of technical support, and we offer additional maintenance packages for all our services."
+      answer: "Yes, we offer ongoing maintenance and support services to ensure your website or application continues to perform optimally. Our Advanced Website package includes 3 months of technical support, and we offer additional maintenance packages for all our services."
     },
     {
       question: "Can you help with migrating content from my existing website?",
@@ -269,7 +268,7 @@ const Pricing = () => {
               <p className="text-muted-foreground mb-4">
                 Add e-commerce functionality to your website with payment processing and inventory management.
               </p>
-              <p className="font-medium">Starting from <span className="text-primary">45,000 KSH</span></p>
+              <p className="font-medium">Starting from <span className="text-primary">30,000 KSH</span></p>
             </div>
             
             <div className="bg-card border border-border rounded-lg p-6 animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
@@ -277,7 +276,7 @@ const Pricing = () => {
               <p className="text-muted-foreground mb-4">
                 Comprehensive training sessions and workshops for your team to manage your digital assets.
               </p>
-              <p className="font-medium">Starting from <span className="text-primary">15,000 KSH</span> per session</p>
+              <p className="font-medium">Starting from <span className="text-primary">10,000 KSH</span> per session</p>
             </div>
           </div>
         </div>
