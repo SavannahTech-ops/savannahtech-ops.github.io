@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { Calendar } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { cn } from '@/lib/utils';
-import { useIsMobile } from '@/hooks/use-mobile';
 
 interface BookingButtonProps {
   variant?: "default" | "outline" | "secondary" | "ghost" | "link";
@@ -13,7 +12,6 @@ interface BookingButtonProps {
 
 const BookingButton = ({ variant = "default", size = "default", className }: BookingButtonProps) => {
   const [showCalendly, setShowCalendly] = useState(false);
-  const isMobile = useIsMobile();
 
   const toggleCalendly = () => {
     setShowCalendly(!showCalendly);
@@ -28,7 +26,7 @@ const BookingButton = ({ variant = "default", size = "default", className }: Boo
         className={cn("gap-2", className)}
       >
         <Calendar className="h-4 w-4" />
-        {isMobile ? "Book" : "Book a Consultation"}
+        Book a Consultation
       </Button>
 
       {showCalendly && (
@@ -45,7 +43,7 @@ const BookingButton = ({ variant = "default", size = "default", className }: Boo
                 ✕
               </Button>
             </div>
-            <div className="calendly-container" style={{ height: isMobile ? '580px' : '680px' }}>
+            <div className="calendly-container" style={{ height: '680px' }}>
               <iframe
                 src="https://calendly.com/savannahprimeagency/30min"
                 width="100%"

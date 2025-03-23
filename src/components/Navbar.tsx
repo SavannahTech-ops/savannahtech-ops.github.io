@@ -4,13 +4,11 @@ import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { Menu, X } from 'lucide-react';
 import BookingButton from './BookingButton';
-import { useIsMobile } from '@/hooks/use-mobile';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
-  const isMobile = useIsMobile();
 
   const navItems = [
     { name: 'Home', path: '/' },
@@ -37,13 +35,13 @@ const Navbar = () => {
     <header
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        scrolled ? 'py-3 blur-backdrop shadow-sm' : 'py-4 md:py-6'
+        scrolled ? 'py-4 blur-backdrop shadow-sm' : 'py-6'
       )}
     >
       <div className="container-custom flex items-center justify-between">
         <Link 
           to="/" 
-          className="text-xl md:text-2xl font-bold relative z-10 group"
+          className="text-2xl font-bold relative z-10 group"
         >
           <span className="text-foreground/80 pr-1">Savannah</span>
           <span className="text-primary">Prime</span>
@@ -51,13 +49,13 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-4 lg:space-x-6 items-center">
+        <nav className="hidden md:flex space-x-6 items-center">
           {navItems.map((item) => (
             <Link
               key={item.name}
               to={item.path}
               className={cn(
-                'relative font-medium transition-colors hover:text-primary text-sm lg:text-base',
+                'relative font-medium transition-colors hover:text-primary',
                 'after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full',
                 location.pathname === item.path 
                   ? 'text-primary after:w-full' 
@@ -67,49 +65,38 @@ const Navbar = () => {
               {item.name}
             </Link>
           ))}
-          <div className="flex items-center gap-2">
-            <Link
-              to="/register"
-              className="button-hover-effect bg-primary text-white px-3 py-2 lg:px-4 lg:py-2.5 rounded-md font-medium transition-all hover:shadow-lg hover:shadow-primary/20 text-sm"
-            >
-              Register
-            </Link>
-            <BookingButton variant="outline" size="default" />
-          </div>
+          <Link
+            to="/contact"
+            className="button-hover-effect bg-primary text-white px-5 py-2.5 rounded-md font-medium transition-all hover:shadow-lg hover:shadow-primary/20"
+          >
+            Get a Quote
+          </Link>
+          <BookingButton variant="outline" size="default" />
         </nav>
 
         {/* Mobile Menu Button */}
-        <div className="flex items-center gap-2 md:hidden">
-          <Link
-            to="/register"
-            className="button-hover-effect bg-primary text-white px-3 py-2 rounded-md font-medium transition-all text-sm"
-          >
-            Register
-          </Link>
-          <BookingButton variant="outline" size="sm" />
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="relative z-10 focus:outline-none"
-            aria-label={isMenuOpen ? 'Close Menu' : 'Open Menu'}
-          >
-            {isMenuOpen ? (
-              <X className="h-5 w-5 text-foreground" />
-            ) : (
-              <Menu className="h-5 w-5 text-foreground" />
-            )}
-          </button>
-        </div>
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="relative z-10 md:hidden focus:outline-none"
+          aria-label={isMenuOpen ? 'Close Menu' : 'Open Menu'}
+        >
+          {isMenuOpen ? (
+            <X className="h-6 w-6 text-foreground" />
+          ) : (
+            <Menu className="h-6 w-6 text-foreground" />
+          )}
+        </button>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="fixed inset-0 bg-background/95 backdrop-blur-sm z-0 md:hidden pt-20">
-            <nav className="flex flex-col items-center justify-start h-full space-y-5 p-6">
+          <div className="fixed inset-0 bg-background/95 backdrop-blur-sm z-0 md:hidden">
+            <nav className="flex flex-col items-center justify-center h-full space-y-6">
               {navItems.map((item) => (
                 <Link
                   key={item.name}
                   to={item.path}
                   className={cn(
-                    'text-lg font-medium transition-colors duration-300 py-2',
+                    'text-xl font-medium transition-colors duration-300',
                     location.pathname === item.path 
                       ? 'text-primary' 
                       : 'text-foreground/80 hover:text-primary'
@@ -118,6 +105,13 @@ const Navbar = () => {
                   {item.name}
                 </Link>
               ))}
+              <Link
+                to="/contact"
+                className="mt-2 bg-primary text-white px-6 py-3 rounded-md font-medium w-48 text-center"
+              >
+                Get a Quote
+              </Link>
+              <BookingButton variant="outline" size="lg" className="w-48" />
             </nav>
           </div>
         )}
