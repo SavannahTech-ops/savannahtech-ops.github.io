@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { Menu, X } from 'lucide-react';
+import BookingButton from './BookingButton';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -48,7 +49,7 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-8 items-center">
+        <nav className="hidden md:flex space-x-6 items-center">
           {navItems.map((item) => (
             <Link
               key={item.name}
@@ -70,6 +71,7 @@ const Navbar = () => {
           >
             Get a Quote
           </Link>
+          <BookingButton variant="outline" size="default" />
         </nav>
 
         {/* Mobile Menu Button */}
@@ -88,7 +90,7 @@ const Navbar = () => {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="fixed inset-0 bg-background/95 backdrop-blur-sm z-0 md:hidden">
-            <nav className="flex flex-col items-center justify-center h-full space-y-8">
+            <nav className="flex flex-col items-center justify-center h-full space-y-6">
               {navItems.map((item) => (
                 <Link
                   key={item.name}
@@ -105,10 +107,11 @@ const Navbar = () => {
               ))}
               <Link
                 to="/contact"
-                className="mt-4 bg-primary text-white px-6 py-3 rounded-md font-medium w-48 text-center"
+                className="mt-2 bg-primary text-white px-6 py-3 rounded-md font-medium w-48 text-center"
               >
                 Get a Quote
               </Link>
+              <BookingButton variant="outline" size="lg" className="w-48" />
             </nav>
           </div>
         )}
