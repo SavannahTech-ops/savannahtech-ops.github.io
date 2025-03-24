@@ -1,4 +1,3 @@
-
 import { Code, Database, Cpu, BarChart4, PenTool, Server, Shield, Globe, Smartphone, RefreshCw } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PageTransition from '@/components/PageTransition';
@@ -9,11 +8,10 @@ interface ServiceProps {
   title: string;
   description: string;
   features: string[];
-  price?: string;
   isHighlighted?: boolean;
 }
 
-const ServiceItem: React.FC<ServiceProps> = ({ icon, title, description, features, price, isHighlighted = false }) => {
+const ServiceItem: React.FC<ServiceProps> = ({ icon, title, description, features, isHighlighted = false }) => {
   return (
     <div className={cn(
       "rounded-lg border p-8 transition-all duration-300",
@@ -30,13 +28,6 @@ const ServiceItem: React.FC<ServiceProps> = ({ icon, title, description, feature
       
       <h3 className="text-2xl font-bold mb-3">{title}</h3>
       <p className="text-muted-foreground mb-6">{description}</p>
-      
-      {price && (
-        <div className="mb-6">
-          <span className="text-3xl font-bold">{price}</span>
-          {price !== "Custom" && <span className="text-muted-foreground ml-1">KSH</span>}
-        </div>
-      )}
       
       <ul className="space-y-3 mb-8">
         {features.map((feature, index) => (
@@ -78,7 +69,6 @@ const Services = () => {
         "Basic analytics integration",
         "Social media integration"
       ],
-      price: "28,000",
       isHighlighted: false
     },
     {
@@ -95,7 +85,6 @@ const Services = () => {
         "eCommerce capabilities",
         "Training and documentation"
       ],
-      price: "130,000",
       isHighlighted: true
     },
     {
@@ -112,7 +101,6 @@ const Services = () => {
         "Integration with existing systems",
         "Ongoing maintenance and updates"
       ],
-      price: "Custom",
       isHighlighted: false
     },
     {
@@ -129,7 +117,6 @@ const Services = () => {
         "Analytics and reporting",
         "Competitor analysis"
       ],
-      price: "Custom",
       isHighlighted: false
     },
     {
@@ -146,7 +133,6 @@ const Services = () => {
         "Wireframing and prototyping",
         "Visual storytelling"
       ],
-      price: "Custom",
       isHighlighted: false
     }
   ];
@@ -206,7 +192,6 @@ const Services = () => {
                 title={service.title}
                 description={service.description}
                 features={service.features}
-                price={service.price}
                 isHighlighted={service.isHighlighted}
               />
             ))}
